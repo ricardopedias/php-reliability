@@ -137,6 +137,7 @@ class ReliabilityTest extends TestCase
     public function helper()
     {
         $object = reliability();
+
         $this->assertInstanceOf(Reliability::class, $object);
     }
 }

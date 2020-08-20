@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![TDD](https://img.shields.io/badge/tdd-Tested%20100%25-blue)
 [![Build Status](https://travis-ci.org/ricardopedias/php-reliability.svg?branch=master)](https://travis-ci.org/ricardopedias/php-reliability)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8afdadf4410844edb5adfefbae3ba76e)](https://www.codacy.com/manual/ricardopedias/php-reliability?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ricardopedias/php-reliability&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5d9844c598e9425a98059e3d08c78f92)](https://www.codacy.com/manual/ricardopedias/php-reliability?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ricardopedias/php-reliability&amp;utm_campaign=Badge_Grade)
 [![Follow](https://img.shields.io/github/followers/ricardopedias?label=Siga%20no%20GitHUB&style=social)](https://github.com/ricardopedias)
 [![Twitter](https://img.shields.io/twitter/follow/ricardopedias?label=Siga%20no%20Twitter)](https://twitter.com/ricardopedias)
 

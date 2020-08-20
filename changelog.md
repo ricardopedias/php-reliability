@@ -11,11 +11,23 @@ As versões seguem as regras do [Semantic Versioning](https://semver.org/lang/pt
 
 Nada implementado ainda.
 
+## \[0.1.1] - 2020-08-19
+
+### Added
+
+-   Configuração para Travis Ci.
+
+### Fixed
+
+-   Verificação de diretório
+-   Correção na configuração do phpunit
+
 ## \[0.1.0] - 2020-08-19
 
 ### Added
 
 -   Criação da estrutura básica do projeto.
+-   Criação das primeiras implementações
 
 ## Releases
 

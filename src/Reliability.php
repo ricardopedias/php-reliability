@@ -60,11 +60,11 @@ class Reliability
      */
     public function isDirectory(string $path): bool
     {
-        $info = $this->pathinfo($path);
-        $hasExtension = isset($info['extension']) === true
-            && is_numeric($info['extension']) === false;
-
-        return $this->pathExists($path) && $hasExtension === false;
+        $path = filter_var($path, FILTER_SANITIZE_STRING);
+        if ($path === false) {
+            return false;
+        }
+        return is_dir($path);
     }
 
     public function isDirectoryOrException(string $path): bool

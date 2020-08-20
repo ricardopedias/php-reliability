@@ -1,0 +1,9 @@
+dist: bionic
+language: php
+php:
+    - '7.4'
+script: phpunit
+install: composer install
+cache:
+    directories:
+      - vendor

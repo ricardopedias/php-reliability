@@ -1,0 +1,56 @@
+{
+    "name": "ricardopedias/php-reliability",
+    "type": "library",
+    "description": "Biblioteca com implementações mais seguras de funções críticas do PHP",
+    "keywords": [
+        "helpers",
+        "security"
+    ],
+    "authors": [
+        {
+            "name": "Ricardo Pereira Dias",
+            "email": "contato@ricardopedias.com.br",
+            "role": "lead"
+        }
+    ],
+    "support": {
+        "docs": "https://github.com/ricardopedias/php-reliability",
+        "issues": "https://github.com/ricardopedias/php-reliability/issues",
+        "source": "https://github.com/ricardopedias/php-reliability"
+    },
+    "license": "MIT",
+    "require": {
+        "php": "^7.4",
+        "league/flysystem": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "phpstan/phpstan": "^0.12.36",
+        "squizlabs/php_codesniffer": "3.*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Reliability\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts":{
+        "test":"vendor/bin/phpunit --testdox $1",
+        "psr": "vendor/bin/phpcs --standard=PSR1,PSR2,PSR12 src",
+        "analyse" : "vendor/bin/phpstan analyse src --level 8"
+    }
+}

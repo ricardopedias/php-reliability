@@ -45,12 +45,18 @@ class Reliability
      * Obtém o nome de um diretório com base no caminho especificado.
      * Ex: /dir/meu-arquivo.md -> /dir
      * @param string $filenameOrDir
+     * @param int $levelsCount
      * @return string
      */
-    public function dirname(string $filenameOrDir): string
+    public function dirname(string $filenameOrDir, int $levelsCount = 1): string
     {
-        $filenameOrDir = $this->removeInvalidWhiteSpaces($filenameOrDir);
-        return $this->pathinfo($filenameOrDir)['dirname'];
+        $dir = $filenameOrDir;
+        for ($level = 1; $level <= $levelsCount; $level ++) {
+            $filenameOrDir = $this->removeInvalidWhiteSpaces($dir);
+            $dir =$this->pathinfo($filenameOrDir)['dirname'];
+        }
+        
+        return $dir;
     }
 
     /**

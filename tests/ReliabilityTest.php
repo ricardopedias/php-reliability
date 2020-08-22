@@ -66,6 +66,17 @@ class ReliabilityTest extends TestCase
         $this->assertEquals($expected, $object->dirname($input));
     }
 
+    /** @test */
+    public function dirnameLevels()
+    {
+        $dir = '/home/ricardo/teste/dir/levels';
+        $object = new Reliability();
+        $this->assertEquals('/home/ricardo/teste/dir', $object->dirname($dir, 1));
+        $this->assertEquals('/home/ricardo/teste', $object->dirname($dir, 2));
+        $this->assertEquals('/home/ricardo', $object->dirname($dir, 3));
+        $this->assertEquals('/home', $object->dirname($dir, 4));
+    }
+
     public function isDirectoryProvider()
     {
         return [

@@ -145,6 +145,40 @@ class ReliabilityTest extends TestCase
     }
 
     /** @test */
+    public function removeDirectory()
+    {
+        $path = __DIR__ . DIRECTORY_SEPARATOR . 'Files' . DIRECTORY_SEPARATOR . 'teste';
+        @mkdir($path, 0777, true);
+        file_put_contents($path . DIRECTORY_SEPARATOR . 'teste.txt', 'teste');
+
+        $this->assertDirectoryExists($path);
+        $this->assertFileExists($path . DIRECTORY_SEPARATOR . 'teste.txt');
+
+        $object = new Reliability();
+        $object->removeDirectory($path);
+        
+        $this->assertDirectoryDoesNotExist($path);
+        $this->assertFileDoesNotExist($path . DIRECTORY_SEPARATOR . 'teste.txt');
+    }
+
+    /** @test */
+    public function removeDirectoryOnlyContents()
+    {
+        $path = __DIR__ . DIRECTORY_SEPARATOR . 'Files' . DIRECTORY_SEPARATOR . 'teste';
+        @mkdir($path, 0777, true);
+        file_put_contents($path . DIRECTORY_SEPARATOR . 'teste.txt', 'teste');
+
+        $this->assertDirectoryExists($path);
+        $this->assertFileExists($path . DIRECTORY_SEPARATOR . 'teste.txt');
+
+        $object = new Reliability();
+        $object->removeDirectory($path, true);
+
+        $this->assertDirectoryExists($path);
+        $this->assertFileDoesNotExist($path . DIRECTORY_SEPARATOR . 'teste.txt');
+    }
+
+    /** @test */
     public function helper()
     {
         $object = reliability();

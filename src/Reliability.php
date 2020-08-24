@@ -139,6 +139,33 @@ class Reliability
     }
 
     /**
+     * Remove o diretório especificado.
+     * @param string $path
+     * @param bool $onlyContents
+     * @return void
+     */
+    public function removeDirectory(string $path, bool $onlyContents = false): void
+    {
+        $parentDirectory = $this->dirname($path);
+        $mainDirectory = $this->basename($path);
+
+        $iterator = $this->mountDirectory($parentDirectory);
+
+        $cleanup = $iterator->listContents("{$mainDirectory}/");
+        foreach ($cleanup as $item) {
+            if ($item['type'] === 'dir') {
+                $iterator->deleteDir("{$item['path']}");
+                continue;
+            }
+            $iterator->delete("{$item['path']}");
+        }
+        
+        if ($onlyContents === false) {
+            $iterator->deleteDir($mainDirectory);
+        }
+    }
+
+    /**
      * @return array<string>
      */
     private function pathinfo(string $path): array

@@ -51,9 +51,9 @@ class Reliability
     public function dirname(string $filenameOrDir, int $levelsCount = 1): string
     {
         $dir = $filenameOrDir;
-        for ($level = 1; $level <= $levelsCount; $level ++) {
+        for ($level = 1; $level <= $levelsCount; $level++) {
             $filenameOrDir = $this->removeInvalidWhiteSpaces($dir);
-            $dir =$this->pathinfo($filenameOrDir)['dirname'];
+            $dir = $this->pathinfo($filenameOrDir)['dirname'];
         }
         
         return $dir;

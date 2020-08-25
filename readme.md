@@ -53,6 +53,7 @@ Abaixo, a lista de funções implementadas pela biblioteca.
 | readFileWithoutCommentsAndWhiteSpaces  |  Remove comentários e espaços desnecessários em um script PHP.                                 |
 | readFileLines                          |  Devolve todas as linhas de um arquivo em forma de array.                                      |
 | mountDirectory                         |  Devolve uma instância do League\Flysystem\Filesystem apontando para o diretório especificado. |
+| removeDirectory                        |                                                                                                |
 | pathInfo                               |                                                                                                |
 | pathExists                             |  Verifica se o caminho especificado existe. Pode ser um diretório ou um arquivo.               |
 | removeInvalidWhiteSpaces               |  Remove caracteres não imprimíveis e caracteres unicode inválidos.                             |

@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Tests;
 
 use Reliability\Reliability;
-use PHPUnit\Framework\TestCase;
 
-class ReliabilityTest extends TestCase
+class CommonsTest extends TestCase
 {
     public function pathProvider()
     {
@@ -82,13 +81,13 @@ class ReliabilityTest extends TestCase
         return [
             [__DIR__, true],
             [__DIR__ . '/bla/bla', false],
-            [__DIR__ . '/ReliabilityTest.php', false],
-            [__DIR__ . '/Files/v1.0.0', true],
-            [__DIR__ . '/Files/v1.0.10', true],
-            [__DIR__ . '/Files/v1.0.999', true],
-            [__DIR__ . '/Files/v1.0.1', false],
-            [__DIR__ . '/Files/v1.0.11', false],
-            [__DIR__ . '/Files/v1.0.998', false],
+            [__DIR__ . '/CommonsTest.php', false],
+            [$this->pathTestFiles('v1.0.0'), true],
+            [$this->pathTestFiles('v1.0.10'), true],
+            [$this->pathTestFiles('v1.0.999'), true],
+            [$this->pathTestFiles('v1.0.1'), false],
+            [$this->pathTestFiles('v1.0.11'), false],
+            [$this->pathTestFiles('v1.0.998'), false],
         ];
     }
 
@@ -107,7 +106,7 @@ class ReliabilityTest extends TestCase
         return [
             [__DIR__, false],
             [__DIR__ . '/bla/bla', false],
-            [__DIR__ . '/ReliabilityTest.php', true],
+            [__DIR__ . '/CommonsTest.php', true],
             [__DIR__ . '/BlablaTest.php', false],
         ];
     }
@@ -127,7 +126,7 @@ class ReliabilityTest extends TestCase
     {
         $object = new Reliability();
 
-        $file = $object->readFileLines(__DIR__ . '/ReliabilityTest.php');
+        $file = $object->readFileLines(__DIR__ . '/CommonsTest.php');
         $this->assertIsArray($file);
         $this->assertEquals('<?php', $file[0]);
         $this->assertEquals('declare(strict_types=1);', $file[2]);
@@ -139,43 +138,9 @@ class ReliabilityTest extends TestCase
     {
         $object = new Reliability();
 
-        $lines = $object->readFileLines(__DIR__ . '/Files/Empty.txt');
+        $lines = $object->readFileLines($this->pathTestFiles('Empty.txt'));
         $this->assertIsArray($lines);
         $this->assertCount(0, $lines);
-    }
-
-    /** @test */
-    public function removeDirectory()
-    {
-        $path = __DIR__ . DIRECTORY_SEPARATOR . 'Files' . DIRECTORY_SEPARATOR . 'teste';
-        @mkdir($path, 0777, true);
-        file_put_contents($path . DIRECTORY_SEPARATOR . 'teste.txt', 'teste');
-
-        $this->assertDirectoryExists($path);
-        $this->assertFileExists($path . DIRECTORY_SEPARATOR . 'teste.txt');
-
-        $object = new Reliability();
-        $object->removeDirectory($path);
-        
-        $this->assertDirectoryDoesNotExist($path);
-        $this->assertFileDoesNotExist($path . DIRECTORY_SEPARATOR . 'teste.txt');
-    }
-
-    /** @test */
-    public function removeDirectoryOnlyContents()
-    {
-        $path = __DIR__ . DIRECTORY_SEPARATOR . 'Files' . DIRECTORY_SEPARATOR . 'teste';
-        @mkdir($path, 0777, true);
-        file_put_contents($path . DIRECTORY_SEPARATOR . 'teste.txt', 'teste');
-
-        $this->assertDirectoryExists($path);
-        $this->assertFileExists($path . DIRECTORY_SEPARATOR . 'teste.txt');
-
-        $object = new Reliability();
-        $object->removeDirectory($path, true);
-
-        $this->assertDirectoryExists($path);
-        $this->assertFileDoesNotExist($path . DIRECTORY_SEPARATOR . 'teste.txt');
     }
 
     /** @test */

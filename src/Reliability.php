@@ -165,6 +165,31 @@ class Reliability
         }
     }
 
+    public function copyDirectory(string $originPath, string $destinationPath): void
+    {
+        $origin      = $this->mountDirectory($originPath);
+        $destination = $this->mountDirectory($destinationPath);
+
+        $list = $origin->listContents("/", true);
+        foreach ($list as $item) {
+            if ($item['type'] === 'dir') {
+                continue;
+            }
+
+            $contents = $origin->read($item['path']);
+            if ($contents === false) {
+                throw new Exception("The file called {$item['path']} cannot be read");
+            }
+            $destination->write($item['path'], $contents);
+        }
+    }
+
+    public function moveDirectory(string $originPath, string $destinationPath): void
+    {
+        $this->copyDirectory($originPath, $destinationPath);
+        $this->removeDirectory($originPath);
+    }
+
     /**
      * @return array<string>
      */

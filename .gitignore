@@ -14,7 +14,8 @@
 /vendor
 /.phpunit.result.cache
 /*.backup
-/tests/destination/*
+/tests/origin
+/tests/destination
 *.deb
 /dist
 /docs/*.backup

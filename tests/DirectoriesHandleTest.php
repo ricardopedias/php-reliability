@@ -48,6 +48,23 @@ class DirectoriesHandleTest extends TestCase
     }
 
     /** @test */
+    public function removeFile()
+    {
+        $originPath      = $this->pathTestFiles('origin');
+        $destinationPath = $this->pathTestFiles('destination');
+
+        $file = $originPath . DIRECTORY_SEPARATOR . 'one.txt';
+        file_put_contents($file, 'teste');
+        
+
+        $object = new Reliability();
+
+        $this->assertFileExists($file);
+        $object->removeFile($file);
+        $this->assertFileDoesNotExist($file);
+    }
+
+    /** @test */
     public function copyDirectory()
     {
         $originPath      = $this->pathTestFiles('origin');
@@ -79,6 +96,25 @@ class DirectoriesHandleTest extends TestCase
             $filePath = str_replace($originPath, $destinationPath, $filePath);
             $this->assertFileExists($filePath);
         });
+    }
+
+    /** @test */
+    public function copyFile()
+    {
+        $originPath      = $this->pathTestFiles('origin');
+        $destinationPath = $this->pathTestFiles('destination');
+
+        $file = $originPath . DIRECTORY_SEPARATOR . 'one.txt';
+        file_put_contents($file, 'teste');
+        $this->assertFileExists($file);
+
+        $object = new Reliability();
+
+        $copy = $destinationPath . DIRECTORY_SEPARATOR . 'copy.txt';
+        $object->copyFile($file, $copy);
+        
+        $this->assertFileExists($file);
+        $this->assertFileExists($copy);
     }
 
     /** @test */
@@ -119,5 +155,24 @@ class DirectoriesHandleTest extends TestCase
             $filePath = str_replace($originPath, $destinationPath, $filePath);
             $this->assertFileExists($filePath);
         });
+    }
+
+    /** @test */
+    public function moveFile()
+    {
+        $originPath      = $this->pathTestFiles('origin');
+        $destinationPath = $this->pathTestFiles('destination');
+
+        $file = $originPath . DIRECTORY_SEPARATOR . 'one.txt';
+        file_put_contents($file, 'teste');
+        $this->assertFileExists($file);
+
+        $object = new Reliability();
+
+        $copy = $destinationPath . DIRECTORY_SEPARATOR . 'copy.txt';
+        $object->moveFile($file, $copy);
+        
+        $this->assertFileDoesNotExist($file);
+        $this->assertFileExists($copy);
     }
 }

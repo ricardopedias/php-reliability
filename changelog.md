@@ -11,6 +11,13 @@ As versões seguem as regras do [Semantic Versioning](https://semver.org/lang/pt
 
 Nada implementado ainda.
 
+## \[0.4.0] - 2020-08-27
+
+### Added
+
+-   Criação de métodos para cópia de diretórios e arquivos
+-   Criação de métodos para movimentação de diretórios e arquivos
+
 ## \[0.3.0] - 2020-08-24
 
 ### Added
@@ -48,7 +55,8 @@ Nada implementado ainda.
 
 ## Releases
 
--   Unreleased <https://github.com/ricardopedias/php-reliability/compare/v0.3.0...HEAD>
+-   Unreleased <https://github.com/ricardopedias/php-reliability/compare/v0.4.0...HEAD>
+-   0.4.0 <https://github.com/ricardopedias/php-reliability/compare/v0.3.0...v0.4.0>
 -   0.3.0 <https://github.com/ricardopedias/php-reliability/compare/v0.2.0...v0.3.0>
 -   0.2.0 <https://github.com/ricardopedias/php-reliability/compare/v0.1.2...v0.2.0>
 -   0.1.2 <https://github.com/ricardopedias/php-reliability/compare/v0.1.1...v0.1.2>

@@ -46,17 +46,22 @@ Abaixo, a lista de funções implementadas pela biblioteca.
 | :------------------------------------: | ---------------------------------------------------------------------------------------------- |
 | basename                               | Obtém o nome + extensão de um arquivo especificado.                                            | 
 | filename                               | Obtém o nome de um arquivo especificado.                                                       |
-| dirname                                |  Obtém o nome de um diretório com base no caminho especificado.                                |
-| isDirectory                            |  Verifica se o caminho especificado existe e é um diretório.                                   |
+| dirname                                | Obtém o nome de um diretório com base no caminho especificado.                                 |
+| removeInvalidWhiteSpaces               | Remove caracteres não imprimíveis e caracteres unicode inválidos.                              |
+| isDirectory                            | Verifica se o caminho especificado existe e é um diretório.                                    |
 | isDirectoryOrException                 |                                                                                                |
-| isFile                                 |  Verifica se o caminho especificado existe e é um arquivo.                                     |
-| readFileWithoutCommentsAndWhiteSpaces  |  Remove comentários e espaços desnecessários em um script PHP.                                 |
-| readFileLines                          |  Devolve todas as linhas de um arquivo em forma de array.                                      |
-| mountDirectory                         |  Devolve uma instância do League\Flysystem\Filesystem apontando para o diretório especificado. |
+| mountDirectory                         | Devolve uma instância do League\Flysystem\Filesystem apontando para o diretório especificado.  |
 | removeDirectory                        |                                                                                                |
+| copyDirectory                          |                                                                                                |
+| moveDirectory                          |                                                                                                |
+| isFile                                 | Verifica se o caminho especificado existe e é um arquivo.                                      |
+| removeFile                             |                                                                                                |
+| copyFile                               |                                                                                                |
+| moveFile                               |                                                                                                |
+| readFileWithoutCommentsAndWhiteSpaces  | Remove comentários e espaços desnecessários em um script PHP.                                  |
+| readFileLines                          | Devolve todas as linhas de um arquivo em forma de array.                                       |
 | pathInfo                               |                                                                                                |
 | pathExists                             |  Verifica se o caminho especificado existe. Pode ser um diretório ou um arquivo.               |
-| removeInvalidWhiteSpaces               |  Remove caracteres não imprimíveis e caracteres unicode inválidos.                             |
 | absolutePath                           |  Obtém o caminho absoluto do caminho relativo informado.                                       |
 
 ## Créditos 

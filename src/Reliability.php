@@ -73,6 +73,12 @@ class Reliability
         return $this->pathExists($path) && $hasExtension === false;
     }
 
+    /**
+     * Verifica se o caminho especificado existe e é um diretório,
+     * caso contrário, emite uma exceção.
+     * @param string $path
+     * @return bool
+     */
     public function isDirectoryOrException(string $path): bool
     {
         if ($path === "" || $this->isDirectory($path) === false) {
@@ -100,6 +106,7 @@ class Reliability
      */
     public function readFileWithoutCommentsAndWhiteSpaces(string $file): string
     {
+        $file = (string)filter_var($file, FILTER_SANITIZE_STRING);
         return php_strip_whitespace($file);
     }
 
@@ -165,6 +172,13 @@ class Reliability
         }
     }
 
+    /**
+     * Copia um diretório e seu conteúdo para outro lugar.
+     * @param string $originPath
+     * @param string $destinationPath
+     * @return void
+     * @trows Exception
+     */
     public function copyDirectory(string $originPath, string $destinationPath): void
     {
         $origin      = $this->mountDirectory($originPath);
@@ -184,10 +198,67 @@ class Reliability
         }
     }
 
+    /**
+     * Move um diretório e seu conteúdo para outro lugar.
+     * @param string $originPath
+     * @param string $destinationPath
+     * @return void
+     */
     public function moveDirectory(string $originPath, string $destinationPath): void
     {
         $this->copyDirectory($originPath, $destinationPath);
         $this->removeDirectory($originPath);
+    }
+
+    /**
+     * Remove um arquivo.
+     * @param string $file
+     * @return void
+     */
+    public function removeFile(string $file): void
+    {
+        $path = $this->dirname($file);
+        $name = $this->basename($file);
+
+        $location = $this->mountDirectory($path);
+        $location->delete($name);
+    }
+
+    /**
+     * Copia um arquivo para outro lugar.
+     * @param string $originFile
+     * @param string $destinationFile
+     * @return void
+     * @trows Exception
+     */
+    public function copyFile(string $originFile, string $destinationFile): void
+    {
+        $originPath          = $this->dirname($originFile);
+        $destinationPath     = $this->dirname($destinationFile);
+        $originFilename      = $this->basename($originFile);
+        $destinationFilename = $this->basename($destinationFile);
+
+        $origin      = $this->mountDirectory($originPath);
+        $destination = $this->mountDirectory($destinationPath);
+
+        $contents = $origin->read($originFilename);
+        if ($contents === false) {
+            throw new Exception("The file called {$originFilename} cannot be read");
+        }
+
+        $destination->write($destinationFilename, $contents);
+    }
+
+    /**
+     * Move um arquivo para outro lugar.
+     * @param string $originFile
+     * @param string $destinationFile
+     * @return void
+     */
+    public function moveFile(string $originFile, string $destinationFile): void
+    {
+        $this->copyFile($originFile, $destinationFile);
+        $this->removeFile($originFile);
     }
 
     /**

@@ -141,7 +141,7 @@ class Reliability
      */
     public function mountDirectory(string $path): Filesystem
     {
-        $adapter = new Adapter\Local($path);
+        $adapter = new Adapter\Local($path, LOCK_EX, Adapter\Local::SKIP_LINKS);
         return new Filesystem($adapter);
     }
 
